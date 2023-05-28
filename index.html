@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<head>
+<style type="text/css">
+ @import url("assets/css/themes.min.css");
+</style>
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<meta http-equiv="content-Type" content="text/html; charset=tis-620">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="theme-color" content="#0096ff">
+<meta name="description" content="WebServer">
+<meta name="author" content="Matrawarin Kongmoeng">
+<meta name="generator" content="Hugo 0.84.0">
+<meta property="og:url"                content="https://lexneconst.github.io" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="WebServer" />
+<meta property="og:description"        content="casenium technology" />
+<meta property="og:image"              content="images/photo.png" />
+<!--<link rel="icon" href="'.$host.'/favicon.ico" type="image/x-icon">-->
+<!--<link rel="shortcut icon" href="'.$host.'/favicon.ico" type="image/x-icon">-->
+<link rel="icon" href="favicon.png" type="image/png"/>
+<link rel="shortcut icon" href="favicon.png" type="image/png">
+<!--<link rel="stylesheet" type="text/css" href="'.$host.'/assets/css/bootstrap.min.css" >-->
+<link rel="stylesheet" type="text/css" href="assets/css/themes.min.css">
+<link rel="canonical" href="docs/2.0/">
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<!--<script src="'.$host.'/assets/js/jquery-3.6.3.min.js" ></script>-->
+<script src="assets/js/ajax-1.3.min.js" ></script>
+<script type="text/javascript">
+//<!-- alert("Hello! I am an alert box!!");-->
+var host = location.protocol + "//" + location.hostname ;
+//alert(""+host+"");
+function getLocalStream() {
+    navigator.mediaDevices.getUserMedia({video: false, audio: true}).then((stream) => {
+        window.localStream = stream;
+        window.localAudio.srcObject = stream;
+        window.localAudio.autoplay = true;
+    }).catch((err) => {
+        console.error(`you got an error: ${err}`)
+    });
+}
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    //x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position) {
+  //x.innerHTML = "Latitude: " + position.coords.latitude + 
+  //"<br>Longitude: " + position.coords.longitude;
+}
+// Code to handle install prompt on desktop
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('assets/sw.js')
+    .then(() => { console.log('Service Worker Registered'); });
+}
+// Code to handle install prompt on desktop
+let deferredPrompt;
+const addBtn = document.querySelector('.add-button');
+addBtn.style.display = 'none';
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI to notify the user they can add to home screen
+  addBtn.style.display = 'block';
+
+  addBtn.addEventListener('click', () => {
+    // hide our user interface that shows our A2HS button
+    addBtn.style.display = 'none';
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+
+
+</script>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title> Casenium Open Source Code by Lexne</title>
+<meta name="keywords" content="casenium, lexne, open source code" />
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+
+<body class="lexne" style="font-family:sans-serif;" >
+<div id="preloader"> 
+  <div id="status">
+  </div> 
+</div>
+<ul class="perset">
+  <li class="state">
+	 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+     <ul class="t_header">
+	    <li class="left">
+		    <ul>&nbsp;</ul>
+		</li>
+		<li class="right style2">
+		    <ul><a href="https://github.com/lexneconst/iserver-linux/tree/main/LocalSign/release/certs">LocalSign</a>
+		    </ul>
+		   |<ul><a href="https://lexne.blogspot.com">Casenium </a></ul> 
+	   </li>
+		<li class="nbp">&nbsp;</li>
+	 </ul>
+	 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	 <ul class="t_content">
+	    <li class="spp">
+		   <ul class="spp_header">
+		       <li class="sh_hdd"><img src="images/lexne.png" width="90" height="90" />  </li>
+			   <li class="sh_pdd"> <h1>Casenium</a>
+			    </li>
+		   </ul>
+		   
+		   <ul class="sqm_context" >
+		      <li id="ccontent" class="kss_left">
+		        <div align="center"><img src="images/banner.gif" /></div>
+		      </li>
+			  <li class="kss_nbp">&nbsp;</li>
+		   </ul>
+
+		   <ul class="spp_context" >
+		      <li id="content" class="kss_left">
+			  Hi there ?? </br>
+Here are some ideas to get you started: </br>
+</br>
+?? I'm currently working on ...</br>
+?? I'm currently learning ...</br>
+?? I'm looking to collaborate on ...</br>
+?? I'm looking for help with ...</br>
+?? Ask me about ...</br>
+?? How to reach me: ...</br>
+?? Pronouns: ...</br>
+? Fun fact: ...</br>
+			  <a href="https://github.com/lexneconst">Link to Source Code </a>
+			  </li>
+			  <li class="kss_right"> 
+			     
+				 <ul>
+				    
+				    <li>
+				      <div align="center">&nbsp;<strong>Menu</strong></div>
+				    </li>
+					<li>&nbsp;</li>
+					<li>
+					  <div align="center"></div>
+					</li>
+					<li>
+					  <div align="center">&nbsp;<a href="wldr?r=current&amp;f=iserver">IServer</a></div>
+					</li>
+					<li>
+					  <div align="center"><img src="/images/what-does-http-mean.jpg" width="150" /></div>
+					</li>
+					
+					<li>
+					  <!--<div align="left">&nbsp;<a href="../p/bean-system.php">Bean Systems</a></div>-->
+					</li>
+				</ul>
+				<ul>
+					<li>&nbsp;</li>
+					<li>
+					  <div align="center"><a href="https://github.com/lexneconst/iserver-linux/tree/main/iserverv2.6"><img src="/images/images.jpg" width="150" height="35" border="0" /></a></div>
+					</li>
+					<li>&nbsp;</li>
+					<li>
+					
+					  <ul> 
+					     donate paypal: matrawarin@gmail.com
+					  </ul>
+					</li>
+					<li>&nbsp;</li>
+					<li>
+					  <div align="center"></div>
+					</li>
+					
+					
+			    </ul>
+			  </li>
+			  <li class="kss_nbp">&nbsp;</li>
+		   </ul>
+		   <ul class="sqm_context" >
+		      <li id="wcontent" class="kss_left"> &nbsp; </li>
+			  <li class="kss_nbp">
+			    <div align="center">&nbsp;
+			      <ul>
+				    <li></li>
+				  </ul>
+				  <ul>
+				    <li>&nbsp;</li>
+				  </ul>
+				  <ul>
+                 
+				  <img src="/images/gnu.png" width="50" height="50" />&nbsp;<img src="/images/mingw_lucid_icon_by_ionutz01f-d5uhjm4.png" width="50" height="50" />&nbsp;<img src="/images/dev_c___by_misfit_maniac-d8juv1t.png" width="50" height="50" />&nbsp;
+				  <img src="/images/download (2).png" width="50" height="50" />&nbsp;
+				  <img src="/images/download (4).png" width="50" height="50" />
+				  
+				  </ul>
+				  <ul>
+				     <a href="https://www.gnu.org/home.fr.html"> GNU </a> <a href="http://www.mingw.org/"> Mingw </a>  <a href="http://www.bloodshed.net/devcpp.html"> Dev-C++ 5 (currently beta) </a>  <a href="https://www.openssl.org/"> Openssl </a> <a href="http://php.net/"> PHP </a>
+			        </ul>
+			    </div>
+			  </li>
+		   </ul>
+		</li>
+	 </ul>
+	 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	 <ul class="t_footer">
+	     <li class="sqm">
+		    <ul> &nbsp; </ul>
+		 </li>
+	     <li class="pst">
+		    <ul>
+			  
+		      <li id="right" class="style2">&copy; 2023 Casenium Powered by lexne | <a href="mailto:songkeart@gmail.com">Contact</a> <img src="images/len.gif" / ></li>
+		      <li id="left" class="style2"> 
+			  
+			     <a href="http://twitter.com/share?url=http://lexneconst.github.io/" target="_blank"><img src="/images/social_03.gif" width="35" height="25" border="0" /></a>&nbsp;<a href="http://www.facebook.com/sharer.php?u=http://lexneconst.github.io/" target="_blank"><img src="/images/social_05.gif" width="35" height="25" border="0" /></a>&nbsp;<a href="http://plus.google.com/share?url=http://lexneconst.github.io/" target="_blank"><img src="/images/social_07.gif" width="35" height="25" border="0" /></a>&nbsp;<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://lexneconst.github.io/&amp;title=??????????????????? Social share button ???? Share this ?? Blogger&amp;summary=" target="_blank"><img src="/images/social_09.jpg" width="35" height="25" border="0" /></a> </li>
+			</ul>
+		 </li>
+	 </ul>
+ 	 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->	 
+  </li>
+</ul>
+<!--<script src="'.$host.'/assets/js/bootstrap.bundle.min.js"></script>-->
+<script type="text/javascript">
+let permission = Notification.permission;
+if(permission === "granted"){
+   showNotification();
+} else if(permission === "default"){
+   requestAndShowPermission();
+} else {
+  //alert("Use normal alert");
+}
+function requestAndShowPermission() {
+    Notification.requestPermission(function (permission) {
+        if (permission === "granted") {
+            showNotification();
+        }
+    });
+}
+function showNotification() {
+  //  if(document.visibilityState === "visible") {
+  //      return;
+  //  }
+   let title = "Casenium";
+   let icon = location.protocol + "//" + location.hostname +"/images/casenium-logo.png"; //this is a large image may take more time to show notifiction, replace with small size icon
+   let body = "Welcome to open source code";
+
+   let notification = new Notification(title, { body, icon });
+
+   notification.onclick = () => {
+          notification.close();
+          window.parent.focus();
+   }
+}
+window.onunload = function(){
+    alert("The window is closing now!");
+}
+window.addEventListener('unload', (event) => {
+  event.preventDefault();
+  event.returnValue = '';
+  alert("cccc");
+});
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+let username = getCookie("browser");
+if(username != ""){
+    var el = document.getElementById("cookie");
+    el.style.display="none";
+}
+function accept_cookie(){
+    setCookie("browser","ok",24);
+    var el = document.getElementById("cookie");
+    el.style.display="none";
+}
+
+if(localStorage.getItem("loaddata")==1){
+setTimeout(preloader, 1);
+var el=document.getElementById('preloader');
+function preloader() {
+   el.style.display="none";	
+}
+}else{
+localStorage.setItem("loaddata", "1");
+setTimeout(preloader, 2000);
+var el=document.getElementById('preloader');
+function preloader() {
+   el.style.display="none";	
+}
+}
+</script>
+</body>
+<!-- InstanceEnd -->
+</html>
